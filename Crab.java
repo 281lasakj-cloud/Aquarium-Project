@@ -27,7 +27,7 @@ public class Crab extends SeaCreature {
 
     @Override
     public String getSymbol() {
-        return direction >= 0 ? symbol : reverseSymbol(symbol);
+        return direction >= 0 ? symbol : symbol;
     }
 
     public int getMoves() {
