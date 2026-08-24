@@ -11,6 +11,7 @@ public class AquariumApp {
         tank[1] = new Fish("Dory", 30, 2, -1, "><((('>");
         tank[2] = new Shark("Bear", 10, 2, 1,")<%>^(')>");
         tank[3] = new Crab("Fin", 20, 1, -1, "„(^^),");
+        tank[4] = new Fish("Dylan", 3, 0, 1, ";<%%%%%%%%!*>");
         
         // =====================================================
         // STUDENT TODO

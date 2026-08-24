@@ -9,7 +9,6 @@ public class Shark extends SeaCreature {
 
     @Override
     public void move(int tankWidth) {
-        // Shark moves twice every turn.
         position += speed * direction;
         keepInsideTank(tankWidth);
 
