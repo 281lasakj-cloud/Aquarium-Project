@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Random;
 
 public class Aquarium {
 
@@ -6,10 +7,12 @@ public class Aquarium {
 
     private SeaCreature[] creatures;
     private int turnNumber;
+    private Random random;
 
     public Aquarium(SeaCreature[] creatures) {
         this.creatures = creatures;
         this.turnNumber = 0;
+        this.random = new Random();
     }
 
     public void display() {
@@ -52,6 +55,7 @@ public class Aquarium {
                 );
             }
         }
+        randomEvents();
     }
 
     public void listCreatureDetails() {
@@ -108,5 +112,15 @@ public class Aquarium {
         int rightPadding = totalPadding - leftPadding;
 
         return " ".repeat(leftPadding) + text + " ".repeat(rightPadding);
+    }
+
+    private void randomEvents(){
+        int e = random.nextInt(100);
+
+        if(e < 10) {
+            System.out.println("Fish will attack!");
+        }else if(e < 20){
+            System.out.println("Echo of nothing:)");
+        }
     }
 }

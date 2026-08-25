@@ -51,7 +51,7 @@ public class AquariumApp {
                 case "3":
                     aquarium.listCreatureDetails();
                     break;
-
+                    
                 case "4":
                     running = false;
                     System.out.println("Aquarium closed. Goodbye!");
