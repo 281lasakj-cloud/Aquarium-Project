@@ -1,5 +1,4 @@
 import java.util.Arrays;
-import java.util.Random;
 
 public class Aquarium {
 
@@ -7,12 +6,28 @@ public class Aquarium {
 
     private SeaCreature[] creatures;
     private int turnNumber;
-    private Random random;
 
-    public Aquarium(SeaCreature[] creatures) {
+    public Aquarium(SeaCreature[] creatures) throws InvalidCreatureException {
+
+        if (creatures == null) {
+            throw new InvalidCreatureException("Invalid creature.");
+        }
+
+        for (SeaCreature creature : creatures) {
+            if (creature != null) {
+
+                if (creature.getName() == null ||
+                    creature.getSpeed() < 0 ||
+                    creature.getPosition() < 0 ||
+                    creature.getPosition() >= TANK_WIDTH ||
+                    (creature.getDirection() != 1 && creature.getDirection() != -1)) {
+
+                throw new InvalidCreatureException("Invalid creature.");
+                }
+            }
+        }
         this.creatures = creatures;
         this.turnNumber = 0;
-        this.random = new Random();
     }
 
     public void display() {
@@ -55,7 +70,6 @@ public class Aquarium {
                 );
             }
         }
-        randomEvents();
     }
 
     public void listCreatureDetails() {
@@ -112,15 +126,5 @@ public class Aquarium {
         int rightPadding = totalPadding - leftPadding;
 
         return " ".repeat(leftPadding) + text + " ".repeat(rightPadding);
-    }
-
-    private void randomEvents(){
-        int e = random.nextInt(100);
-
-        if(e < 10) {
-            System.out.println("Fish will attack!");
-        }else if(e < 20){
-            System.out.println("Echo of nothing:)");
-        }
     }
 }

@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
-public class AquariumApp {
+public class AquariumApp{
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvalidCreatureException{
 
         SeaCreature[] tank = new SeaCreature[8];
 
@@ -12,7 +12,13 @@ public class AquariumApp {
         tank[2] = new Shark("Bear", 10, 2, 1,")<%>^(')>");
         tank[3] = new Crab("Fin", 20, 1, -1, "„(^^),");
         tank[4] = new Fish("Dylan", 3, 0, 1, ";<%%%%%%%%!*>");
-        
+
+        //Invalid Creatures
+        tank[5] = new Fish("mo", 4, -33, 1, "><>");
+        tank[6] = new Fish("emo", 100, 3, 1, "><>");
+        tank[7] = new Fish("N", 4, 3, 10, "><>");
+
+
         // =====================================================
         // STUDENT TODO
         // =====================================================
