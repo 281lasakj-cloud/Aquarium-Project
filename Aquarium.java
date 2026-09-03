@@ -51,26 +51,12 @@ public class Aquarium {
         System.out.println("+" + "-".repeat(TANK_WIDTH) + "+");
     }
 
-    public void advanceTurn() {
-        turnNumber++;
-
-        System.out.println();
-        System.out.println("Advancing to turn " + turnNumber + "...");
-
-        for (SeaCreature creature : creatures) {
-            if (creature != null) {
-                int oldPosition = creature.getPosition();
-                creature.move(TANK_WIDTH);
-
-                System.out.println(
-                        creature.getName()
-                                + " moved from " + oldPosition
-                                + " to " + creature.getPosition()
-                                + "."
-                );
-            }
-        }
-    }
+   public void advanceTurn() { turnNumber++; System.out.println(); 
+    System.out.println("Advancing to turn " + turnNumber + "..."); 
+    for (int i = 0; i < creatures.length; i++) { SeaCreature creature = creatures[i]; 
+        if (creature != null) { int oldPosition = creature.getPosition(); 
+            creature.move(TANK_WIDTH); System.out.println( 
+                creature.getName() + " moved from " + oldPosition + " to " + creature.getPosition() + "." ); 
 
     public void listCreatureDetails() {
         System.out.println();
@@ -126,5 +112,15 @@ public class Aquarium {
         int rightPadding = totalPadding - leftPadding;
 
         return " ".repeat(leftPadding) + text + " ".repeat(rightPadding);
+    }
+
+    private void eatFish(Shark shark){
+        for(int i = 0; i < creature.length; i++){
+            SeaCreature creature = creatures[i];
+
+            if(shark.getPostion() == creature.getPosition()){
+                System.out.println(shark.getName() + " ate " + creature.getName() + "! :(");
+            }
+        }
     }
 }
