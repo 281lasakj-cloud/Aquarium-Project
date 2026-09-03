@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Random;
 
 public class Aquarium {
 
@@ -6,6 +7,7 @@ public class Aquarium {
 
     private SeaCreature[] creatures;
     private int turnNumber;
+    private Random random = new Random();
 
     public Aquarium(SeaCreature[] creatures) throws InvalidCreatureException {
 
@@ -51,12 +53,21 @@ public class Aquarium {
         System.out.println("+" + "-".repeat(TANK_WIDTH) + "+");
     }
 
-   public void advanceTurn() { turnNumber++; System.out.println(); 
-    System.out.println("Advancing to turn " + turnNumber + "..."); 
-    for (int i = 0; i < creatures.length; i++) { SeaCreature creature = creatures[i]; 
-        if (creature != null) { int oldPosition = creature.getPosition(); 
-            creature.move(TANK_WIDTH); System.out.println( 
-                creature.getName() + " moved from " + oldPosition + " to " + creature.getPosition() + "." ); 
+    public void advanceTurn() {
+        turnNumber++;
+        System.out.println();
+
+        for (int i = 0; i < creatures.length; i++) {
+            SeaCreature creature = creatures[i];
+
+        if (creature != null) {
+            int oldPosition = creature.getPosition();
+            creature.move(TANK_WIDTH);
+
+            System.out.println(creature.getName() + " moved from " + oldPosition + " to " + creature.getPosition() + ".");
+        }
+    }
+}
 
     public void listCreatureDetails() {
         System.out.println();
@@ -73,7 +84,7 @@ public class Aquarium {
         }
 
         if (number == 1) {
-            System.out.println("No creatures are currently in the aquarium.");
+            System.out.println("No creatures are in the aquarium.");
         }
     }
 
@@ -114,12 +125,20 @@ public class Aquarium {
         return " ".repeat(leftPadding) + text + " ".repeat(rightPadding);
     }
 
-    private void eatFish(Shark shark){
-        for(int i = 0; i < creature.length; i++){
-            SeaCreature creature = creatures[i];
+    private void eatFish(Shark shark) {
+    for (int i = 0; i < creatures.length; i++) {
+        SeaCreature creature = creatures[i];
 
-            if(shark.getPostion() == creature.getPosition()){
-                System.out.println(shark.getName() + " ate " + creature.getName() + "! :(");
+        if (creature != null && creature != shark && creature instanceof Fish
+            && shark.getPosition() == creature.getPosition()) {
+
+                if (random.nextInt(100) < 20) {
+                    System.out.println(shark.getName() + " ate " + creature.getName() + "! :(");
+
+                    creatures[i] = null;
+                } else {
+                    System.out.println("The Shark failed to eat a fish.");
+                }
             }
         }
     }
