@@ -2,9 +2,12 @@ public class Fish extends SeaCreature {
 
     private String symbol;
 
-    public Fish(String name, int position, int speed, int direction, String symbol) {
+    public Fish(String name, int position, int speed, int direction, String symbol) throws InvalidCreatureException {
         super(name, position, speed, direction);
         this.symbol = symbol;
+        if (name.length() < 3 || name.length() > 20 || position < 0 || speed < 0 || (direction != -1 && direction != 1)) {
+            throw new InvalidCreatureException("Invalid name length for Fish: " + name);
+        }
     }
 
     @Override

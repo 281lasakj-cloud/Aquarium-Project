@@ -6,11 +6,14 @@ public class Crab extends SeaCreature {
     private Random random;
     private String symbol;
 
-    public Crab(String name, int position, int speed, int direction, String symbol) {
+    public Crab(String name, int position, int speed, int direction, String symbol) throws InvalidCreatureException {
         super(name, position, speed, direction);
         this.moves = 0;
         this.random = new Random();
         this.symbol = symbol;
+        if (name.length() < 3 || name.length() > 20 || position < 0 || speed < 0 || (direction != -1 && direction != 1)) {
+            throw new InvalidCreatureException("Invalid name length for Crab: " + name);
+        }
     }
 
     @Override

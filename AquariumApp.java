@@ -7,16 +7,48 @@ public class AquariumApp{
         SeaCreature[] tank = new SeaCreature[8];
 
         // Two starter creatures.
+        try{
         tank[0] = new Fish("Nemo", 4, 3, 1, "><>");
+        }catch(InvalidCreatureException e){
+            System.out.println(e.getMessage());
+        }
+        try{
         tank[1] = new Fish("Dory", 30, 2, -1, "><((('>");
+        }catch(InvalidCreatureException e){
+            System.out.println(e.getMessage());
+        }
+        try{
         tank[2] = new Shark("Bear", 10, 2, 1,")<%>^(')>");
+        }catch(InvalidCreatureException e){
+            System.out.println(e.getMessage());
+        }
+        try{
         tank[3] = new Crab("Fin", 20, 1, -1, "„(^^),");
+        }catch(InvalidCreatureException e){
+            System.out.println(e.getMessage());
+        }
+        try{
         tank[4] = new Fish("Dylan", 3, 0, 1, ";<%%%%%%%%!*>");
+        }catch(InvalidCreatureException e){
+            System.out.println(e.getMessage());
+        }
 
         //Invalid Creatures
-        tank[5] = new Fish("mo", 4, -33, 1, "><>");
-        tank[6] = new Fish("emo", 100, 3, 1, "><>");
-        tank[7] = new Fish("N", 4, 3, 10, "><>");
+        try{
+            tank[5] = new Fish("mo", 4, -33, 1, "><>");
+        }catch(InvalidCreatureException e){
+            System.out.println(e.getMessage());
+        }
+        try{
+            tank[6] = new Fish("emo", 100, 3, 1, "><>");
+        }catch(InvalidCreatureException e){
+            System.out.println(e.getMessage());
+        }
+        try{
+            tank[7] = new Fish("N", 4, 3, 10, "><>");
+        }catch(InvalidCreatureException e){
+            System.out.println(e.getMessage());
+        }
 
 
         // =====================================================

@@ -5,11 +5,14 @@ public abstract class SeaCreature {
     protected int speed;
     protected int direction;
 
-    public SeaCreature(String name, int position, int speed, int direction) {
+    public SeaCreature(String name, int position, int speed, int direction) throws InvalidCreatureException {
         this.name = name;
         this.position = position;
         this.speed = speed;
         this.direction = direction;
+        if (name.length() < 3 || name.length() > 20 || position < 0 || speed < 0 || (direction != -1 && direction != 1)) {
+            throw new InvalidCreatureException("Invalid name length for SeaCreature: " + name);
+        }
     }
 
     // Each subclass decides how it moves.
