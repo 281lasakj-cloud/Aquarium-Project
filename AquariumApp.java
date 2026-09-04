@@ -23,7 +23,7 @@ public class AquariumApp{
             System.out.println(e.getMessage());
         }
         try{
-        tank[3] = new Crab("Fin", 20, 1, -1, "„(^^),");
+        tank[3] = new Crab("Fin", 20, 1, -1, ",,(^^),");
         }catch(InvalidCreatureException e){
             System.out.println(e.getMessage());
         }
@@ -32,9 +32,14 @@ public class AquariumApp{
         }catch(InvalidCreatureException e){
             System.out.println(e.getMessage());
         }
+        try{
+            tank[5] = new Pufferfish("Puffer", 12, 1, -1, "*(@;");
+        }catch(InvalidCreatureException e){
+            System.out.println(e.getMessage());
+        }
 
         //Invalid Creatures
-        try{
+        /*try{
             tank[5] = new Fish("mo", 4, -33, 1, "><>");
         }catch(InvalidCreatureException e){
             System.out.println(e.getMessage());
@@ -49,6 +54,7 @@ public class AquariumApp{
         }catch(InvalidCreatureException e){
             System.out.println(e.getMessage());
         }
+            */
 
 
         // =====================================================
