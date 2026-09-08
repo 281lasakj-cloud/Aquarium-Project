@@ -1,3 +1,5 @@
+// Type, Name, Position, Speed, Direction, Symbols
+
 Fish,Nemo,4,3,1,><>
 Fish,Dory,30,2,-1,><((('>
 Shark,Bear,10,2,1,)<%>^(')>
