@@ -7,29 +7,12 @@ public class Aquarium {
 
     private SeaCreature[] creatures;
     private int turnNumber;
-    private Random random = new Random();
+    private Random random;
 
-    public Aquarium(SeaCreature[] creatures) throws InvalidCreatureException {
-
-        if (creatures == null) {
-            throw new InvalidCreatureException("Invalid creature.");
-        }
-
-        for (SeaCreature creature : creatures) {
-            if (creature != null) {
-
-                if (creature.getName() == null ||
-                    creature.getSpeed() < 0 ||
-                    creature.getPosition() < 0 ||
-                    creature.getPosition() >= TANK_WIDTH ||
-                    (creature.getDirection() != 1 && creature.getDirection() != -1)) {
-
-                throw new InvalidCreatureException("Invalid creature.");
-                }
-            }
-        }
+    public Aquarium(SeaCreature[] creatures) {
         this.creatures = creatures;
         this.turnNumber = 0;
+        this.random = new Random();
     }
 
     public void display() {
@@ -55,19 +38,22 @@ public class Aquarium {
 
     public void advanceTurn() {
         turnNumber++;
+
         System.out.println();
+        System.out.println("Advancing to turn " + turnNumber + "...");
 
-        for (int i = 0; i < creatures.length; i++) {
-            SeaCreature creature = creatures[i];
+        for (SeaCreature creature : creatures) {
+            if (creature != null) {
+                int oldPosition = creature.getPosition();
 
-        if (creature != null) {
-            int oldPosition = creature.getPosition();
-            creature.move(TANK_WIDTH);
+                creature.move(TANK_WIDTH);
 
-            System.out.println(creature.getName() + " moved from " + oldPosition + " to " + creature.getPosition() + ".");
+                if (creature instanceof Shark) {
+                    eatFish((Shark) creature);
+                }
+            }
         }
     }
-}
 
     public void listCreatureDetails() {
         System.out.println();
@@ -84,7 +70,7 @@ public class Aquarium {
         }
 
         if (number == 1) {
-            System.out.println("No creatures are in the aquarium.");
+            System.out.println("No creatures are currently in the aquarium.");
         }
     }
 
@@ -101,16 +87,16 @@ public class Aquarium {
         Arrays.fill(lane, ' ');
 
         String symbol = creature.getSymbol();
-        int start = Math.max(0,
-                Math.min(creature.getPosition(), TANK_WIDTH - symbol.length()));
 
-        for (int i = 0; i < symbol.length() && start + i < lane.length; i++) {
+        int start = Math.max( 0, Math.min( creature.getPosition(),  TANK_WIDTH - symbol.length())
+        );
+
+        for (int i = 0;i < symbol.length() && start + i < lane.length;i++) {
+
             lane[start + i] = symbol.charAt(i);
         }
 
-        return "|" + new String(lane) + "| "
-                + creature.getName() + " ("
-                + creature.getClass().getSimpleName() + ")";
+        return "|" + new String(lane) + "| " + creature.getName() + " (" + creature.getClass().getSimpleName() + ")";
     }
 
     private String center(String text, int width) {
@@ -126,18 +112,24 @@ public class Aquarium {
     }
 
     private void eatFish(Shark shark) {
-    for (int i = 0; i < creatures.length; i++) {
-        SeaCreature creature = creatures[i];
 
-        if (creature != null && creature != shark && creature instanceof Fish
-            && shark.getPosition() == creature.getPosition()) {
+        for (int i = 0; i < creatures.length; i++) {
 
-                if (random.nextInt(100) < 20) {
-                    System.out.println(shark.getName() + " ate " + creature.getName() + "! :(");
+            SeaCreature creature = creatures[i];
+
+            if (creature != null && creature != shark && creature instanceof Fish
+                && shark.getPosition() == creature.getPosition()) {
+
+                if (random.nextInt(100) < 100) {
+
+                    System.out.println(
+                            shark.getName() + " ate " + creature.getName() + "! :(");
 
                     creatures[i] = null;
+
                 } else {
-                    System.out.println("The Shark failed to eat a fish.");
+
+                    System.out.println("The Shark didn't eat the fish.");
                 }
             }
         }
