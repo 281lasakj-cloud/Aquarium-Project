@@ -8,8 +8,9 @@ public class AquariumApp{
 
     public static void main(String[] args) throws InvalidCreatureException{
 
+        int numCreatures = readArraySize();
 
-        SeaCreature[] tank = new SeaCreature[10];
+        SeaCreature[] tank = new SeaCreature[numCreatures];
 
 
         readFile(tank);
@@ -166,19 +167,51 @@ public class AquariumApp{
                 index++;
 
 
-            } catch (NumberFormatException | InvalidCreatureException e) {
-                System.out.println("Error creating creature in line " + line);
+                } catch (NumberFormatException | InvalidCreatureException e) {
+                    System.out.println("Error creating creature in line " + line);
+                }
+            }
+
+
+            file.close();
+
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Creature.txt not found.");
+        }
+    }
+
+    private static int readArraySize() {
+        Scanner file;
+        try {
+            file = new Scanner(new File("Creature.txt"));
+        if (file.hasNextLine()) {
+
+            String firstLine = file.nextLine().trim();
+
+            try {
+                int size = Integer.parseInt(firstLine);
+
+                file.close();
+
+                if (size > 0) {
+                    return size;
+                }
+
+                System.out.println("Invalid aquarium size. Default size is 10.");
+
+            } catch (NumberFormatException e) {
+
+                System.out.println("First line must be a number. Default size is 10.");
             }
         }
 
-
         file.close();
-
-
-    } catch (FileNotFoundException e) {
-        System.out.println("Creature.txt not found.");
+    } catch(FileNotFoundException e){
+        System.out.println("Creature.txt not found. Default size is 10.");
     }
-}
+        return 10;
+    }
 }
 
 

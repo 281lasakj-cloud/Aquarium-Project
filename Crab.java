@@ -28,8 +28,8 @@ public class Crab extends SeaCreature {
 
         moves++;
 
-
-        if (random.nextInt(100) < 20) {
+        int crabChance = 20;
+        if (random.nextInt(100) < crabChance) {
             direction *= -1;
         }
     }

@@ -85,11 +85,8 @@ public abstract class SeaCreature {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName()
-                + " | name=" + name
-                + " | position=" + position
-                + " | speed=" + speed
-                + " | direction=" + getDirectionWord();
+        return getClass().getSimpleName() + " | name=" + name + " | position=" + position
+         + " | speed=" + speed + " | direction=" + getDirectionWord();
     }
 }
 

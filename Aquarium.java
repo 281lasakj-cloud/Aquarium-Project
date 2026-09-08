@@ -56,8 +56,6 @@ public class Aquarium {
 
         for (SeaCreature creature : creatures) {
             if (creature != null) {
-                int oldPosition = creature.getPosition();
-
 
                 creature.move(TANK_WIDTH);
 
@@ -154,7 +152,8 @@ public class Aquarium {
             && Math.abs(shark.getPosition() - i) == 1) {
 
 
-                if (random.nextInt(100) < 10) {
+                int sharkChance = 10;
+                if (random.nextInt(100) < sharkChance) {
 
 
                     System.out.println(
