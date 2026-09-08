@@ -6,7 +6,12 @@ public class ReferenceLab {
         // EXPERIMENT A: ALIASING
         // ==================================================
 
-        SeaCreature nemo = new Fish("Nemo", 5, 3, 1, "><>");
+        SeaCreature nemo = null;
+        try {
+            nemo = new Fish("Nemo", 5, 3, 1, "><>");
+        } catch (InvalidCreatureException e) {
+            e.printStackTrace();
+        }
         SeaCreature copy = nemo;
 
         // PREDICT BEFORE RUNNING:
@@ -25,8 +30,14 @@ public class ReferenceLab {
         // EXPERIMENT B: TWO DIFFERENT OBJECTS
         // ==================================================
 
-        SeaCreature fish1 = new Fish("Fish", 10, 2, 1, "><>");
-        SeaCreature fish2 = new Fish("Fish", 10, 2, 1, "><>");
+        SeaCreature fish1 = null;
+        SeaCreature fish2 = null;
+        try {
+            fish1 = new Fish("Fish", 10, 2, 1, "><>");
+            fish2 = new Fish("Fish", 10, 2, 1, "><>");
+        } catch (InvalidCreatureException e) {
+            e.printStackTrace();
+        }
 
         // PREDICT BEFORE RUNNING:
         // Will fish1 == fish2 be true or false?
@@ -42,7 +53,11 @@ public class ReferenceLab {
         // ==================================================
 
         SeaCreature[] tank = new SeaCreature[5];
-        tank[0] = new Fish("Bubbles", 8, 1, 1, "><((('>");
+        try {
+            tank[0] = new Fish("Bubbles", 8, 1, 1, "><((('>");
+        } catch (InvalidCreatureException e) {
+            e.printStackTrace();
+        }
 
         SeaCreature selected = tank[0];
 
