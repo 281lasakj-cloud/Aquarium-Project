@@ -1,0 +1,28 @@
+Final Reflection
+
+1. One example of inheritance is the Shark class extending from SeaCreature. 
+With the inheritance it allows for the Shark class to inherit variables and methods like 
+name, position, speed, direction, getName(), getPosition(), and turnAround() without needing
+to type it all again. This allows it to have a structure like a creature but still be 
+specified with its own features like movement or looks.
+
+2. The move() method is the best example of being different for each creature. The Shark() 
+overrides the move() method to allow it to move twice every turn as opposed to one like the
+fish does. The main reason of overriding is to allow each creature to move uniquely.
+
+3. The SeaCreature can contain multiple other subclasses because they don't interfere with 
+the code and are just extensions of the code in SeaCreature (inheritance). Each of the 
+creatures are all extended from SeaCreature making them SeaCreature types which allows them 
+to all be stored in the same array. 
+
+4. In Experiment A when nemo is set to the Fish object and copy is set to nemo. They both 
+refer to the Fish object in this situation meaning that when you change the position of 
+nemo then copy is pointing to the same object meaning it also changed.
+
+5. The commit where I added the shark and crab were the most important because they were the
+first true progress I made in the project before adding extensions and another type of creature.
+
+6. If there were 1000 creatures one of the main issues I see is that the array would be extremely 
+long so I would just use an ArrayList so that it can keep up with the demand and holds as many as 
+needed but not any more.
+
