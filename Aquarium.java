@@ -151,14 +151,14 @@ public class Aquarium {
 
 
             if (creature != null && creature != shark && creature instanceof Fish
-                && shark.getPosition() == creature.getPosition()) {
+            && Math.abs(shark.getPosition() - i) == 1) {
 
 
-                if (random.nextInt(100) < 100) {
+                if (random.nextInt(100) < 10) {
 
 
                     System.out.println(
-                            shark.getName() + " ate " + creature.getName() + "! :(");
+                            shark.getName() + " made a personal attack on " + creature.getName() + "! :(");
 
 
                     creatures[i] = null;
