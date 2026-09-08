@@ -2,13 +2,19 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+
 public class AquariumApp{
+
 
     public static void main(String[] args) throws InvalidCreatureException{
 
+
         SeaCreature[] tank = new SeaCreature[10];
 
+
         readFile(tank);
+
+
 
 
         // =====================================================
@@ -22,46 +28,56 @@ public class AquariumApp{
         // tank[2] = new Shark(...);
         // tank[3] = new Turtle(...);
 
+
         Aquarium aquarium = new Aquarium(tank);
         Scanner input = new Scanner(System.in);
 
+
         boolean running = true;
+
 
         System.out.println("====================================");
         System.out.println("        JAVA TERMINAL AQUARIUM");
         System.out.println("====================================");
+
 
         while (running) {
             printMenu();
             System.out.print("Choose an option: ");
             String choice = input.nextLine().trim();
 
+
             switch (choice) {
                 case "1":
                     aquarium.display();
                     break;
+
 
                 case "2":
                     aquarium.advanceTurn();
                     aquarium.display();
                     break;
 
+
                 case "3":
                     aquarium.listCreatureDetails();
                     break;
-                    
+                   
                 case "4":
                     running = false;
-                    System.out.println("Aquarium closed.");
+                    System.out.println("Aquarium closed. Goodbye!");
                     break;
+
 
                 default:
                     System.out.println("Please choose 1, 2, 3, or 4.");
             }
         }
 
+
         input.close();
     }
+
 
     private static void printMenu() {
         System.out.println();
@@ -71,26 +87,35 @@ public class AquariumApp{
         System.out.println("4. Quit");
     }
 
+
     private static void readFile(SeaCreature[] tank) {
+
 
     try {
         Scanner file = new Scanner(new File("Creature.txt"));
 
+
         int index = 0;
+
 
         while (file.hasNextLine() && index < tank.length) {
 
+
             String line = file.nextLine().trim();
+
 
             if (line.isEmpty()) {
                 continue;
             }
 
+
             String[] parts = line.split(",", 6);
+
 
             if (parts.length != 6) {
                 continue;
             }
+
 
             try {
                 String type = parts[0].trim();
@@ -100,45 +125,61 @@ public class AquariumApp{
                 int direction = Integer.parseInt(parts[4].trim());
                 String symbol = parts[5].trim();
 
+
                 if (type.equalsIgnoreCase("Fish")) {
+
 
                     tank[index] = new Fish(
                             name, position, speed, direction, symbol
                     );
 
+
                 } else if (type.equalsIgnoreCase("Shark")) {
+
 
                     tank[index] = new Shark(
                             name, position, speed, direction, symbol
                     );
 
+
                 } else if (type.equalsIgnoreCase("Crab")) {
+
 
                     tank[index] = new Crab(
                             name, position, speed, direction, symbol
                     );
 
+
                 } else if (type.equalsIgnoreCase("Pufferfish")) {
+
 
                     tank[index] = new Pufferfish(
                             name, position, speed, direction, symbol
                     );
 
+
                 } else {
                     continue;
                 }
 
+
                 index++;
+
 
             } catch (NumberFormatException | InvalidCreatureException e) {
                 System.out.println("Error creating creature in line " + line);
             }
         }
 
+
         file.close();
+
 
     } catch (FileNotFoundException e) {
         System.out.println("Creature.txt not found.");
     }
 }
 }
+
+
+
